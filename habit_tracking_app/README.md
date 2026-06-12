@@ -2,55 +2,106 @@
 
 ## Description
 
-HabitFlow is a Python based habit tracking application.
-It allows users to create habits, track completion events,
-store data using SQLite and calculate habit analytics.
+HabitFlow is a Python-based habit tracking application developed using
+Object-Oriented Programming principles.
+
+The application allows users to create, manage, and track habits.
+Each completion is stored as a habit log event in an SQLite database.
+The system can analyse habit progress by calculating current and longest streaks.
 
 ## Features
 
 - Create habits
+- View existing habits
 - Complete habits
 - Delete habits
-- SQLite database storage
-- Habit completion logs
-- Streak calculation
-- Object oriented design
+- Store data permanently using SQLite
+- Track habit completion events
+- Calculate current streaks
+- Calculate longest streaks
+- Predefined starter habits
+- Object-Oriented design
+- Automated unit testing
 
 ## Technologies
 
 - Python 3
-- SQLite
+- SQLite3
 - unittest
+- Dataclasses
 
 ## Project Structure
+habit_tracking_app/
 
-models.py
-- Contains User, Habit and HabitLog classes
+│
+├── Main.py
+│ Command line user interface
+│
+├── models.py
+│ Contains User, Habit and HabitLog classes
+│
+├── database.py
+│ Handles SQLite database creation and operations
+│
+├── tracker.py
+│ Application logic for managing habits
+│
+├── analytics.py
+│ Calculates habit statistics and streaks
+│
+├── predefined.py
+│ Creates predefined example habits
+│
+├── tests/
+│ Unit tests for application components
+│
+└── habits.db
+SQLite database file (generated automatically)
 
-database.py
-- Handles SQLite operations
 
-tracker.py
-- Controls habit operations
+## Database Design
 
-analytics.py
-- Calculates streaks
+The application uses SQLite with two main tables:
 
-main.py
-- Command line interface
+### habits
 
+Stores information about each habit:
+
+- id
+- name
+- description
+- periodicity
+- created_at
+
+
+### habit_logs
+
+Stores completion events:
+
+- id
+- habit_id
+- completed_at
+
+
+A habit can contain multiple completion logs.
 
 ## How to Run
 
 Install Python 3.
 
 Run:
-
 python Main.py
 
+
+The application will start in the command line.
 
 ## Testing
 
 Run:
-
 python -m unittest discover -s tests
+
+
+Expected result:
+Ran 5 tests
+
+OK
