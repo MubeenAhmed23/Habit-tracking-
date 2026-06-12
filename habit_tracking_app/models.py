@@ -4,31 +4,46 @@ from typing import List
 
 
 @dataclass
+class User:
+    id: int
+    email: str
+
+
+@dataclass
 class HabitLog:
+
+    id: int
     habit_id: int
     completed_at: date
 
 
+
 @dataclass
 class Habit:
+
     id: int
+    user_id: int
     name: str
     description: str
-    periodicity: str  # daily / weekly
+    periodicity: str
     created_at: datetime
     logs: List[HabitLog] = field(default_factory=list)
 
-    def add_log(self) -> bool:
+
+    def add_log(self):
+
         today = datetime.now().date()
 
-        if any(log.completed_at == today for log in self.logs):
-            return False
+        for log in self.logs:
+            if log.completed_at == today:
+                return False
 
-        self.logs.append(HabitLog(self.id, today))
+        self.logs.append(
+            HabitLog(
+                0,
+                self.id,
+                today
+            )
+        )
+
         return True
-
-
-@dataclass
-class User:
-    id: int
-    email: str
