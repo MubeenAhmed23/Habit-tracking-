@@ -49,14 +49,8 @@ Run:
 python Main.py
 
 
-## Database
+## Testing
 
-The application automatically creates:
+Run:
 
-habits.db
-
-which stores:
-
-Users
-Habits
-Habit completion logs
+python -m unittest discover -s tests
